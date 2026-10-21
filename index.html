@@ -1,0 +1,147 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>GHOSTED: Last Seen at Hotel Aurora</title>
+<style>
+:root{color-scheme:dark;--ink:#f4ecff;--mut:#b9a8d6;--pk:#ff6fcf;--gd:#ffd36e;--bg:#0b0812;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box}html,body{margin:0;height:100%;overflow:hidden;background:var(--bg);color:var(--ink);font-family:'Segoe UI',system-ui,sans-serif}
+canvas{display:block}button{font:inherit;color:var(--ink);cursor:pointer}
+.ov{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:20px;z-index:6;background:radial-gradient(ellipse at center,rgba(50,18,78,.85),rgba(6,4,12,.97))}
+h1{font-size:clamp(40px,9vw,92px);margin:0;letter-spacing:.14em;background:linear-gradient(90deg,var(--pk),var(--gd));-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:0 0 40px rgba(255,111,207,.4)}
+.sub{letter-spacing:.35em;color:var(--gd);font-size:clamp(11px,2vw,16px);margin:6px 0 16px;text-transform:uppercase}
+.story{max-width:580px;color:var(--mut);line-height:1.55;margin:0 0 22px}
+.modes{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;width:min(640px,100%)}
+.m{background:rgba(255,255,255,.06);border:1px solid rgba(255,111,207,.35);border-radius:14px;padding:14px;transition:.15s}.m:hover{transform:translateY(-3px);background:rgba(255,111,207,.16);border-color:var(--pk)}
+.m b{display:block;font-size:17px;letter-spacing:.1em}.m span{font-size:12px;color:var(--mut)}
+.keys{margin-top:20px;font-size:12px;color:var(--mut);line-height:1.8}kbd{background:#2a2038;border:1px solid #4b3a68;border-radius:5px;padding:1px 6px;color:var(--ink)}
+#vg{position:fixed;inset:0;pointer-events:none;z-index:1;background:radial-gradient(ellipse at center,transparent 45%,rgba(0,0,0,.75) 100%)}
+#hud{position:fixed;inset:0;pointer-events:none;z-index:2}
+.p{position:absolute;background:rgba(14,9,24,.7);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:10px 14px;backdrop-filter:blur(6px);font-size:14px}
+.tl{top:14px;left:14px;max-width:330px}.tl small{display:block;color:var(--pk);letter-spacing:.25em;margin-bottom:4px;font-size:11px}.bl{bottom:14px;left:14px;font-size:13px}.bl b{color:var(--gd);letter-spacing:.2em}
+.br{bottom:14px;right:14px;font-size:12px;color:var(--mut);line-height:1.7}
+#pr{position:absolute;left:50%;bottom:24%;transform:translateX(-50%);background:rgba(14,9,24,.88);border:1px solid var(--gd);border-radius:999px;padding:8px 18px;display:none;box-shadow:0 0 18px rgba(255,211,110,.35)}
+#xh{position:absolute;left:50%;top:50%;width:5px;height:5px;margin:-2px;border-radius:50%;background:rgba(255,255,255,.7)}
+#dlg{position:fixed;left:50%;bottom:4%;transform:translateX(-50%);width:min(780px,94vw);z-index:5;display:none;background:rgba(12,7,22,.93);border:1px solid var(--pk);border-radius:16px;padding:18px 22px;box-shadow:0 0 40px rgba(255,111,207,.25)}
+#dlg::before,#dlg::after{content:"";position:fixed;left:0;right:0;height:7vh;background:#000;z-index:-1}#dlg::before{top:0}#dlg::after{bottom:0}
+#sp{color:var(--gd);letter-spacing:.2em;font-size:12px;text-transform:uppercase;margin-bottom:6px}#tx{min-height:3.2em;line-height:1.55}
+#ch{display:flex;flex-direction:column;gap:8px;margin-top:12px}#ch button{text-align:left;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.18);border-radius:10px;padding:9px 14px}#ch button:hover{border-color:var(--pk);background:rgba(255,111,207,.15)}
+#toast{position:fixed;left:50%;top:16%;transform:translateX(-50%);z-index:4;background:rgba(14,9,24,.92);border:1px solid var(--pk);border-radius:12px;padding:12px 20px;max-width:min(540px,92vw);text-align:center;opacity:0;transition:opacity .3s;pointer-events:none}
+.ov input{font:inherit;font-size:34px;letter-spacing:.6em;text-align:center;width:200px;padding:10px;border-radius:12px;border:2px solid var(--gd);background:#1a1228;color:var(--ink);margin:14px 0}
+.go{background:linear-gradient(90deg,var(--pk),var(--gd));color:#1a0f24;border:0;border-radius:999px;padding:12px 28px;font-weight:700;letter-spacing:.08em;margin:4px}.go.alt{background:transparent;color:var(--ink);border:1px solid var(--mut)}
+</style></head><body>
+<div id="vg"></div>
+<div class="ov" id="menu"><h1>GHOSTED</h1><div class="sub">Last Seen at Hotel Aurora</div>
+<p class="story">Aarav checked into Room 404 at 2:47 AM and never answered again. Talk to the people who were there, climb to the second floor, find the code, and open his luggage. A slow-burn thriller with no jump scares and no chase. Just a hotel that knows more than it says.</p>
+<div class="modes"><button class="m" data-h="2"><b>STORY</b><span>Glowing markers and clear objectives.</span></button><button class="m" data-h="1"><b>DETECTIVE</b><span>Objectives only. Find things yourself.</span></button><button class="m" data-h="0"><b>NOIR</b><span>No hints at all. Pure deduction.</span></button></div>
+<div class="keys"><kbd>W A S D</kbd> move &nbsp; <kbd>Mouse</kbd> look &nbsp; <kbd>E</kbd> interact/talk &nbsp; <kbd>1 2 3</kbd> pick a reply &nbsp; <kbd>Shift</kbd> run<br>Best on desktop Chrome. Headphones recommended.</div></div>
+<div class="ov" id="pause" style="display:none"><h1 style="font-size:48px">PAUSED</h1><p class="story">Click to continue.</p><button class="go" id="resume">RESUME</button></div>
+<div class="ov" id="kp" style="display:none"><div class="sub">Luggage · 3-digit lock</div><input id="pin" maxlength="3" inputmode="numeric" autocomplete="off" placeholder="···"><div><button class="go" id="ok">OPEN</button><button class="go alt" id="no">CANCEL</button></div></div>
+<div class="ov" id="end" style="display:none"><h1 style="font-size:54px">CASE CLOSED</h1><p class="story" id="eb"></p><button class="go" onclick="location.reload()">PLAY AGAIN</button></div>
+<div id="hud" style="display:none"><div class="p tl"><small id="ch1">CHAPTER 1 · THE LOBBY</small><span id="ob"></span></div><div class="p bl"><b>LUGGAGE CODE</b> &nbsp; <span id="cd"></span></div><div class="p br">E interact · Shift run<br>1 2 3 choose reply</div><div id="pr"></div><div id="xh"></div></div>
+<div id="dlg"><div id="sp"></div><div id="tx"></div><div id="ch"></div></div><div id="toast"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+const $=i=>document.getElementById(i),U=3.2,D=['7','2','5'];
+let hint=2,state='menu',kp=false,t0=0,AC,flash=0,nextL=7,moving=0,bob=0;
+const F={key:false,d:['?','?','?'],open:false,done:false},K={},P={x:0,z:-1.2,y:0};
+const scene=new THREE.Scene();scene.background=new THREE.Color(0x0b0812);scene.fog=new THREE.FogExp2(0x0b0812,.045);
+const cam=new THREE.PerspectiveCamera(72,innerWidth/innerHeight,.1,80);cam.rotation.order='YXZ';
+const ren=new THREE.WebGLRenderer({antialias:true});ren.setPixelRatio(Math.min(devicePixelRatio,2));ren.setSize(innerWidth,innerHeight);document.body.prepend(ren.domElement);
+const amb=new THREE.AmbientLight(0xcfc0ff,.45);scene.add(amb);
+const walls=[],mat=(c,e)=>new THREE.MeshLambertMaterial({color:c,emissive:e||0});
+function bx(x,z,w,d,h,c,y=0,s=true,e){const m=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),mat(c,e));m.position.set(x,y+h/2,z);scene.add(m);if(s)walls.push({x0:x-w/2,x1:x+w/2,z0:z-d/2,z1:z+d/2,m});return m}
+function pl(x,y,z,w,d,c,up=1){const m=new THREE.Mesh(new THREE.PlaneGeometry(w,d),mat(c));m.rotation.x=-Math.PI/2*up;m.position.set(x,y,z);scene.add(m);return m}
+function light(c,i,x,y,z,r=12){const l=new THREE.PointLight(c,i,r);l.position.set(x,y,z);scene.add(l);return l}
+function sign(t,x,y,z,w,h,bg,fg,glow,ry=0){const c=document.createElement('canvas');c.width=256;c.height=96;const g=c.getContext('2d');g.fillStyle=bg;g.fillRect(0,0,256,96);g.fillStyle=fg;g.shadowColor=fg;g.shadowBlur=glow;g.font='bold 44px sans-serif';g.textAlign='center';g.fillText(t,128,64);const s=new THREE.Mesh(new THREE.PlaneGeometry(w,h),new THREE.MeshBasicMaterial({map:new THREE.CanvasTexture(c)}));s.position.set(x,y,z);s.rotation.y=ry;scene.add(s)}
+const WC=0x3b3350;
+// lobby
+pl(0,0,-7,14,14,0x1d1a28);pl(0,4,-7,14,14,0x14111c,-1);pl(0,.01,-6,6,6,0x5a1840);
+bx(-7,-7,.3,14,4,WC);bx(7,-7,.3,14,4,WC);bx(0,0,14,.3,4,WC);bx(-4.5,-14,5,.3,4,WC);bx(4.5,-14,5,.3,4,WC);
+sign('HOTEL AURORA',-4.6,3,-13.8,3.2,1.2,'#120a1c','#ff6fcf',22);
+bx(0,-4.2,4,1,1.1,0x4a2e22);bx(0,-4.2,4.3,1.3,.08,0x9a6a44,1.1,false);bx(-4.8,-2.5,.9,2.6,.8,0x5b2a52);bx(-4.9,-2.5,.3,2.6,.9,0x5b2a52,.4,false);
+for(const x of[5.6,-5.6]){bx(x,-9,.5,.5,.5,0x2a2230);const s=new THREE.Mesh(new THREE.SphereGeometry(.55,10,8),mat(0x1f6b3a));s.position.set(x,1.1,-9);scene.add(s)}
+light(0xffc98a,1,0,3.4,-5);const fl=light(0xff9ad8,.9,-4,3.2,-10);
+// stairs
+bx(-2,-19,.3,10,6.6,WC);bx(2,-19,.3,10,6.6,WC);pl(0,6.6,-19,4,10,0x14111c,-1);
+for(let i=0;i<16;i++)bx(0,-14.3125-i*.625,4,.625,U*(i+1)/16,i%2?0x3a3048:0x4a3a5e,0,false,0x080410);
+light(0xffa070,.8,0,2.5,-16);light(0xffa070,.8,0,5.4,-21);
+// upper floor
+pl(0,U,-31,20,14,0x4a1a30);pl(0,U*2,-31,20,14,0x120e1a,-1);
+for(const s of[-1,1]){bx(s*2,-26.5,.3,5,U,WC,U);bx(s*2,-34.5,.3,7,U,WC,U);bx(s*10,-30,.3,10,U,WC,U);bx(s*6,-25,8,.3,U,WC,U);bx(s*6,-35,8,.3,U,WC,U)}
+bx(0,-38,4.3,.3,U,WC,U);
+const win=new THREE.Mesh(new THREE.PlaneGeometry(2.2,2),new THREE.MeshBasicMaterial({color:0x6f8cff}));win.position.set(0,U+1.7,-37.8);scene.add(win);
+light(0x7f9cff,1.2,0,U+1.7,-36,14);light(0xffb070,.7,0,U+2.8,-27);light(0xffb070,.5,0,U+2.8,-33);
+for(const x of[-.7,.7]){const b=new THREE.Mesh(new THREE.PlaneGeometry(.6,13),new THREE.MeshBasicMaterial({color:0x8fa8ff,transparent:true,opacity:.07,blending:THREE.AdditiveBlending,depthWrite:false}));b.rotation.x=-Math.PI/2;b.position.set(x,U+1.2,-31);scene.add(b)}
+sign('404',-1.65,U+2.4,-30,.9,.45,'#d4a84a','#2a1a10',0,Math.PI/2);sign('405',1.65,U+2.4,-30,.9,.45,'#d4a84a','#2a1a10',0,-Math.PI/2);
+// room 404 (Aarav)
+light(0x8899ff,.8,-6,U+2.6,-30,9);
+bx(-8.6,-33,2,3.2,.5,0x4a2a3a,U);bx(-8.6,-33,1.9,3,.25,0xdcd0e8,U+.5,false);bx(-8.6,-34.7,2.2,.2,1.1,0x3a2218,U,false);
+bx(-9.25,-34.1,.7,.45,.18,0xffffff,U+.75,false);bx(-7.95,-34.1,.7,.45,.18,0xffffff,U+.75,false);bx(-8.6,-32.3,1.95,1.7,.1,0x7a2a4a,U+.75,false);
+bx(-4.5,-33.5,.9,.4,.65,0xb8323f,U);bx(-4.5,-33.5,.4,.45,.05,0xffd36e,U+.65,false);bx(-8.7,-26.3,.8,1.8,.8,0x5a3a2a,U);bx(-8.7,-26.3,.3,.3,.4,0xffe0a0,U+.8,false,0x886633);
+// room 405 (Meera)
+light(0xffb070,.9,6,U+2.6,-30,9);
+bx(8.6,-33,2,3.2,.5,0x2a3a4a,U);bx(8.6,-33,1.9,3,.25,0xd0dce8,U+.5,false);bx(8.6,-34.7,2.2,.2,1.1,0x3a2218,U,false);bx(8.7,-26.3,.9,2,.8,0x5a3a2a,U);bx(8.7,-26.3,.5,.05,.4,0x66ffaa,U+.8,false,0x22aa66);
+// people
+function person(sh,hr,sk){const g=new THREE.Group(),b=(w,h,d,x,y,c)=>{const m=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),mat(c));m.position.set(x,y,0);g.add(m)};
+b(.55,.85,.32,0,1.15,sh);b(.22,.8,.26,-.14,.4,sk);b(.22,.8,.26,.14,.4,sk);b(.16,.7,.2,-.4,1.15,sh);b(.16,.7,.2,.4,1.15,sh);b(.12,.12,.02,.15,1.4,0xffd36e);
+const h=new THREE.Mesh(new THREE.SphereGeometry(.2,14,10),mat(0xd9a88a));h.position.y=1.8;g.add(h);
+const hair=new THREE.Mesh(new THREE.SphereGeometry(.23,14,10,0,Math.PI*2,0,Math.PI*.62),mat(hr));hair.position.set(0,1.84,-.02);g.add(hair);b(.4,.55,.12,0,1.62,hr);scene.add(g);return g}
+const Pr=person(0x2a2f6a,0x1a0f10,0x15172e),Me=person(0x7a2f6a,0x2a1a3a,0x1a2438);Pr.position.set(0,0,-5.4);Me.position.set(3.4,U,-30);
+// dust
+const N=300,dp=new Float32Array(N*3);for(let i=0;i<N*3;i+=3){dp[i]=(Math.random()-.5)*18;dp[i+1]=Math.random()*7;dp[i+2]=-Math.random()*38}
+const dust=new THREE.Points(new THREE.BufferGeometry().setAttribute('position',new THREE.BufferAttribute(dp,3)),new THREE.PointsMaterial({color:0xffe0b0,size:.05,transparent:true,opacity:.5,blending:THREE.AdditiveBlending,depthWrite:false}));scene.add(dust);
+// door
+const door=bx(-2,-30,.3,2,U,0xb8323f,U);const dB=walls[walls.length-1];
+// dialogue
+const DL={
+i0:{s:'You',t:'2:47 AM, three days ago. Aarav’s last text: “Don’t come. …Actually, come.” Now you’re in the lobby of Hotel Aurora, and the receptionist is pretending not to notice you.',c:[['Walk up to the desk',null,()=>toast('Walk to the reception desk and press E to talk.')]]},
+p0:{s:'Priya · Reception',t:'Welcome to Hotel Aurora. Checking in? (She looks like she hasn’t slept in days.)',c:[['I’m looking for my friend Aarav. Room 404.','p1'],['Just looking around.']]},
+p1:{s:'Priya · Reception',t:'Guest details are private. He checked in at 2:47 AM and I haven’t seen him since. That’s all I can say.',c:[['He’s missing, Priya. Please.','p2'],['Check the log again?','p1b']]},
+p1b:{s:'Priya · Reception',t:'The log says he never checked out. Second floor, up the stairs at the back. Beyond that, I need a reason.',c:[['I’m his best friend. Here’s our chat.','p2']]},
+p2:{s:'Priya · Reception',t:'(She glances at the stairs.) Fine. He left a spare key in the drawer. “For whoever comes looking.” And he made me memorize his booking ref: it ends in 7. Meera in 405 heard everything that night.',c:[['Thank you, Priya.',null,()=>{F.key=true;F.d[0]=D[0];beep(880);toast('Got: spare key to Room 404. Code digit 1 = 7.');hud()}]]},
+p4:{s:'Priya · Reception',t:'Stairs are at the back. Talk to Meera in 405 before you go into his room. And… be careful.',c:[['Will do.']]},
+m0:{s:'Meera · Room 405',t:'(Her door is ajar.) You’re the friend? Thank god. Everyone else just stares.',c:[['What did you hear that night?','m1'],['Who are you?','m0b']]},
+m0b:{s:'Meera · Room 405',t:'Meera. I write thrillers, so I notice things people would rather I didn’t.',c:[['What did you hear?','m1']]},
+m1:{s:'Meera · Room 405',t:'Around 3 AM: thumping through the wall, then a whisper counting numbers. “Seven… two…” I wrote them on my hand like an idiot.',c:[['Anything else?','m2',()=>{F.d[1]=D[1];beep(880);toast('Code digit 2 = 2. Meera heard “seven, two”.');hud()}]]},
+m2:{s:'Meera · Room 405',t:'He was obsessed with his bed. Fluffing the pillow, tucking things under it. If I were you, I’d check there. The key’s from Priya, right?',c:[['Thanks, Meera.']]},
+m4:{s:'Meera · Room 405',t:'Check the bed. Pillow first. Then that red suitcase. Go on, I’ll keep the corridor quiet.',c:[['On my way.']]}};
+let dl=null;
+function say(id){const n=DL[id];dl=n;state='talk';document.exitPointerLock();$('sp').textContent=n.s;const tx=$('tx');tx.textContent='';let i=0;clearInterval(say.t);say.t=setInterval(()=>{tx.textContent=n.t.slice(0,++i);if(i>=n.t.length)clearInterval(say.t)},16);
+const cs=$('ch');cs.innerHTML='';(n.c||[['Continue']]).forEach((c,k)=>{const b=document.createElement('button');b.textContent=(k+1)+'. '+c[0];b.onclick=()=>pick(c);cs.appendChild(b)});$('dlg').style.display='block'}
+function pick(c){clearInterval(say.t);if(c[2])c[2]();if(c[1]&&DL[c[1]])say(c[1]);else if(state==='talk'){$('dlg').style.display='none';state='play';ren.domElement.requestPointerLock()}}
+// interactions
+const IA=[
+{x:0,z:-5.4,y:0,h:2.3,n:'Talk to Priya',on:()=>true,fn:()=>say(F.key?'p4':'p0')},
+{x:3.4,z:-30,y:U,h:2.3,n:'Talk to Meera',on:()=>true,fn:()=>say(F.d[1]!=='?'?'m4':'m0')},
+{x:-2,z:-30,y:U,h:1.9,n:'Room 404 door',on:()=>!F.open,fn:()=>{if(!F.key)return toast('Locked. Maybe the front desk has a spare.');F.open=true;walls.splice(walls.indexOf(dB),1);scene.remove(door);beep(520);toast('The door clicks open. Room 404.')}},
+{x:-8.6,z:-33.6,y:U,h:1.5,n:'Lift the pillow',on:()=>F.d[2]==='?',fn:()=>{F.d[2]=D[2];beep(880);toast('A note under the pillow: “Third digit: 5. Tell them I was never ghosting.”');hud()}},
+{x:-4.5,z:-33.5,y:U,h:1.5,n:'Open the luggage',on:()=>!F.done,fn:()=>{if(F.d.includes('?'))return toast('A 3-digit combination lock. You’re missing digits.');kp=true;document.exitPointerLock();$('kp').style.display='flex';$('pin').value='';$('pin').focus()}}];
+IA.forEach(a=>{a.m=new THREE.Mesh(new THREE.OctahedronGeometry(.13),new THREE.MeshBasicMaterial({color:0xffd36e}));a.m.position.set(a.x,a.y+a.h,a.z);scene.add(a.m)});
+function near(){let b=null,bd=2.5;for(const a of IA){if(!a.on()||Math.abs(a.y-P.y)>1.8)continue;const d=Math.hypot(a.x-P.x,a.z-P.z);if(d<bd){bd=d;b=a}}return b}
+function toast(t){const e=$('toast');e.textContent=t;e.style.opacity=1;clearTimeout(toast.t);toast.t=setTimeout(()=>e.style.opacity=0,4200)}
+function hud(){$('ob').textContent=hint?(!F.key?'Ask the receptionist about Aarav':F.d[1]==='?'?'Climb the stairs and talk to the neighbour in 405':!F.open?'Open Room 404 with the spare key':F.d[2]==='?'?'Search Aarav’s bed':'Open the luggage (3-digit code)'):'';
+$('cd').textContent=F.d.join(' · ');$('ch1').textContent=P.y>1.6?'CHAPTER 2 · THE SECOND FLOOR':'CHAPTER 1 · THE LOBBY'}
+function end(){state='end';document.exitPointerLock();const s=Math.round((performance.now()-t0)/1000);$('end').style.display='flex';$('eb').textContent='Inside the bag: a boarding pass, a USB drive marked EVIDENCE, and a note. “You cracked it. The night manager was cooking the books. I recorded everything and had to vanish before he did something dumb. Priya and Meera helped. See you at Gate 14. Ghosting? Never.” Solved in '+Math.floor(s/60)+'m '+s%60+'s.'}
+$('no').onclick=()=>{kp=false;$('kp').style.display='none';state='play';ren.domElement.requestPointerLock()};
+$('ok').onclick=()=>{if($('pin').value===D.join('')){F.done=true;kp=false;$('kp').style.display='none';beep(1040);state='play';end()}else{$('pin').value='';toast('Wrong combination. Check your code slots.')}};
+// audio
+function snd(){try{AC=new(window.AudioContext||window.webkitAudioContext)();[55,82.4].forEach((f,i)=>{const o=AC.createOscillator(),g=AC.createGain();o.type=i?'triangle':'sine';o.frequency.value=f;g.gain.value=.03;o.connect(g).connect(AC.destination);o.start()})}catch(e){}}
+function beep(f=660,d=.25,v=.08){if(!AC)return;const o=AC.createOscillator(),g=AC.createGain();o.frequency.value=f;g.gain.setValueAtTime(v,AC.currentTime);g.gain.exponentialRampToValueAtTime(.001,AC.currentTime+d);o.connect(g).connect(AC.destination);o.start();o.stop(AC.currentTime+d)}
+document.querySelectorAll('.m').forEach(b=>b.onclick=()=>{hint=+b.dataset.h;t0=performance.now();$('menu').style.display='none';$('hud').style.display='block';snd();hud();ren.domElement.requestPointerLock();say('i0')});
+$('resume').onclick=()=>{$('pause').style.display='none';state='play';ren.domElement.requestPointerLock()};
+document.addEventListener('pointerlockchange',()=>{if(!document.pointerLockElement&&state==='play'&&!kp){state='pause';$('pause').style.display='flex'}});
+ren.domElement.addEventListener('click',()=>{if(state==='play'&&!document.pointerLockElement)ren.domElement.requestPointerLock()});
+addEventListener('mousemove',e=>{if(document.pointerLockElement&&state==='play'){cam.rotation.y-=e.movementX*.0022;cam.rotation.x=Math.max(-1.3,Math.min(1.3,cam.rotation.x-e.movementY*.0022))}});
+addEventListener('keydown',e=>{K[e.code]=true;if(state==='talk'&&/^Digit[1-4]$/.test(e.code)){const b=$('ch').children[+e.code[5]-1];if(b)b.click()}
+if(e.code==='KeyE'&&state==='play'){const n=near();if(n)n.fn()}});addEventListener('keyup',e=>K[e.code]=false);
+function gy(x,z){return z>-14?0:z>-24?U*(-14-z)/10:U}
+function hit(x,z){return walls.some(w=>x>w.x0-.35&&x<w.x1+.35&&z>w.z0-.35&&z<w.z1+.35)}
+function upd(dt,t){const f=(K.KeyW||K.ArrowUp?1:0)-(K.KeyS||K.ArrowDown?1:0),s=(K.KeyD||K.ArrowRight?1:0)-(K.KeyA||K.ArrowLeft?1:0),sp=K.ShiftLeft?5:3,l=Math.hypot(f,s)||1,sy=Math.sin(cam.rotation.y),cy=Math.cos(cam.rotation.y);
+const dx=(-sy*f+cy*s)/l*sp*dt,dz=(-cy*f-sy*s)/l*sp*dt;if(!hit(P.x+dx,P.z))P.x+=dx;if(!hit(P.x,P.z+dz))P.z+=dz;moving=f||s?1:0;bob+=moving*dt*(K.ShiftLeft?11:8);
+P.y=gy(P.x,P.z);cam.position.set(P.x,P.y+1.65+Math.sin(bob)*.035*moving,P.z)}
+function world(dt,t){for(const[n,g]of[[Pr,Pr],[Me,Me]]){const d=Math.hypot(P.x-n.position.x,P.z-n.position.z);if(d<7)n.rotation.y+=(Math.atan2(P.x-n.position.x,P.z-n.position.z)-n.rotation.y)*.08;n.position.y=(n===Me?U:0)+Math.sin(t*1.6)*.01}
+IA.forEach(a=>{a.m.visible=hint===2&&a.on();a.m.position.y=a.y+a.h+Math.sin(t*2.5+a.x)*.08;a.m.rotation.y=t*2});
+nextL-=dt;if(nextL<0){flash=1;nextL=7+Math.random()*10;beep(48,1.4,.25)}flash*=.92;amb.intensity=.45+flash*1.6;win.material.color.setHSL(.62,.6,.5+flash*.45);
+fl.intensity+=((Math.random()<.02?.1:.9)-fl.intensity)*.3;
+const a=dust.geometry.attributes.position;for(let i=0;i<N;i++){a.array[i*3+1]+=dt*.12;if(a.array[i*3+1]>7)a.array[i*3+1]=0}a.needsUpdate=true;
+const n=near();$('pr').style.display=n&&state==='play'?'block':'none';if(n)$('pr').textContent='E · '+n.n;if(Math.floor(t*4)%8===0)hud()}
+const clk=new THREE.Clock();(function tick(){requestAnimationFrame(tick);const dt=Math.min(clk.getDelta(),.05),t=clk.elapsedTime;if(state==='play')upd(dt,t);world(dt,t);ren.render(scene,cam)})();
+cam.position.set(0,1.65,-1.2);addEventListener('resize',()=>{cam.aspect=innerWidth/innerHeight;cam.updateProjectionMatrix();ren.setSize(innerWidth,innerHeight)});
+</script></body></html>
