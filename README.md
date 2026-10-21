@@ -4,9 +4,9 @@
 
 A slow-burn 3D mystery you play in the browser. Talk to the people who were there, climb to the second floor, piece together a 3-digit code, and open Aarav's luggage. No jump scares, no chasing, just a hotel that knows more than it says.
 
-[![Play Now](https://img.shields.io/badge/▶_PLAY_NOW-ff6fcf?style=for-the-badge)](https://Sinchana1115.github.io/ghosted-hotel-aurora/)
+[![Play Now] https://sinchana1115-ghosted.netlify.app
 
-**Live link:** https://Sinchana1115.github.io/ghosted-hotel-aurora/
+**Live link:** https://sinchana1115-ghosted.netlify.app
 
 ---
 
@@ -47,7 +47,7 @@ A slow-burn 3D mystery you play in the browser. Talk to the people who were ther
 - **three.js** (WebGL rendering)
 - **Vanilla JavaScript, HTML and CSS**
 - **Web Audio API**
-- Hosted on **GitHub Pages**
+- Hosted on **Netlify**
 
 ## 🗺️ Roadmap
 
@@ -74,8 +74,12 @@ This build contains no API keys or secrets. When the backend features land, keys
 
 ## 📄 License
 
-MIT. Add a `LICENSE` file if you want others to reuse it.
+© 2026 Sinchana S. All Rights Reserved.
 
----
+This project is source-visible for **viewing and feedback only**. Copying,
+modification, redistribution, or any personal or commercial use requires
+prior written permission. See the [LICENSE](LICENSE) file.
+
+📬 Permission requests and feedback: sinchana1115@gmail.com
 
 Made with 💜 by **Sinchana1115**. Feedback and PRs welcome.
